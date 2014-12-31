@@ -1,0 +1,1 @@
+00 12 * * * php /var/www/html/PoliticallyMail/jobs/updateDictionary.php

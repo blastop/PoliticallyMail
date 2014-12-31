@@ -1,0 +1,145 @@
+<?php require_once(__DIR__.'/load_dictionary.ajx'); ?>
+<!doctype html>
+<html lang="en" ng-app="storeApp">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="robots" content="noindex, nofollow">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title><?php echo TITLE; ?></title>
+
+        <link rel="icon" type="image/png" href="<?php echo $path; ?>img/favicon.png" />
+        <script type="text/javascript">
+
+            var update = function() {
+                try {
+                    var xhr = new XMLHttpRequest();
+                    var $input = this;
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState==4 && xhr.status == 200 && $input.getAttribute('del')) {
+                            var $parent = $input.parentNode;
+                            if ($input.checked) {
+                                $parent.setAttribute('data-accepted',2);
+                                $parent.children[0].setAttribute('data-prev-val', ($parent.children[0].checked ? 1 : 0));
+                                $parent.children[0].checked = false;
+                                $parent.children[0].setAttribute('disabled', 'disabled');
+                            } else {
+                                $parent.setAttribute('data-accepted',$parent.children[0].getAttribute('data-prev-val'));
+                                $parent.children[0].checked =  $parent.children[0].getAttribute('data-prev-val') == 1 ? true : false;
+                                $parent.children[0].removeAttribute('data-prev-val');
+                                $parent.children[0].removeAttribute('disabled');
+                            }
+                        }
+                    }
+                    xhr.open(
+                        "GET",
+                        "?admin=goodness"+
+                            "&a=2"+
+                            "&wid="+this.getAttribute('data-wordID')+
+                            "&w="+document.getElementById('word_'+this.getAttribute('data-wordID')).value+
+                            "&e="+document.getElementById('email_'+this.getAttribute('data-wordID')).value+
+                            "&s="+(this.checked ? (this.getAttribute('del') ? 2 : 1) : 0),
+                        true
+                    );
+                    xhr.send();
+                } catch (e) {
+                    console.log(e.message);
+                }
+            };
+
+            var onStart = function() {
+                var ul = document.getElementById('GoodList');
+                for (var i=1; i<ul.children.length; i++) {
+                    ul.children[i].children[0].addEventListener('click', update, false);
+                    ul.children[i].children[1].addEventListener('click', update, false);
+                }
+            };
+
+            var showAccepted = function(flag) {
+                var ul = document.getElementById('GoodList');
+                for (var i= 1, shower = (flag ? 'block' : 'none'); i<ul.children.length; i++) {
+                    if (ul.children[i].getAttribute('data-accepted') == '1') {
+                        ul.children[i].style.display = shower;
+                    }
+                }
+            };
+        </script>
+
+        <style>
+            * {
+                border: 0px;
+                padding: 0px;
+                margin: 0px;
+                outline: 0px;
+                vertical-align: baseline;
+
+                font-family: Arial, "Helvetica Neue", Helvetica, sans-serif, serif;
+                font-size: 13px;
+                line-height: 18px;
+                color: #333;
+            }
+
+            header {
+                width: 100%;
+                height: 20px;
+                position: fixed;
+                top: 0px;
+                left: 0px;
+                font-size: 12px;
+                background: rgba(255,255,255,0.95);
+                padding: 10px;
+                border-bottom: 1px solid #ccc;
+            }
+
+            #GoodList {
+                margin: 50px;
+                width: 350px;
+                list-style: none;
+            }
+
+            #GoodList li[data-accepted="2"] {
+                color: #f00;
+            }
+
+            #GoodList li:first-child {
+                margin-bottom: 20px;
+                border-bottom: 1px solid #bcbc00;
+            }
+
+            #GoodList input{
+				margin-right: 17px;
+				margin-left: 2px;
+				margin-bottom: 1px;
+				border: 1px solid gray;
+				padding: 2px;
+            }
+        </style>
+    </head>
+    <body onload="onStart()">
+        <div id="wrap">
+            <header>
+                <input type="radio" name="dictionary" checked onclick="showAccepted(1);">&nbsp;Dictionary
+                &nbsp;&nbsp;&nbsp;
+                <input type="radio" name="dictionary" onclick="showAccepted(0);">&nbsp;Suggestions
+				&nbsp;&nbsp;&nbsp;
+				<a href="?admin=goodness&a=1">Rebuild Dictionary</a>
+            </header>
+            <ul id="GoodList">
+                <li>
+                    Rcp Rem Word
+                </li>
+            <?php
+                foreach ($dict as $word) {
+                    echo '<li data-accepted="'.$word->accepted.'">'.
+                            '<input type="checkbox" data-wordID="'.$word->wordID.'" '.($word->accepted == MIN ? 'checked="checked"' : ($word->accepted == 2 ? 'data-prev-val="0" disabled="disabled"' : '')).'>'.
+                            '<input type="checkbox" del="y" data-wordID="'.$word->wordID.'"'.($word->accepted == 2 ? 'checked="checked"' : '').'>'.
+                            '<input type="text" value="'.$word->word.'" id="word_'.$word->wordID.'">'.
+                            '<input type="text" value="'.$word->email.'" id="email_'.$word->wordID.'">'.
+                        '</li>';
+                }
+            ?>
+            </ul>
+        </div>
+    </body>
+</html>

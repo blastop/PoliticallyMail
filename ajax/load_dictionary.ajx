@@ -1,0 +1,20 @@
+<?php
+//var_dump($show);
+if ($dict = (!$show ? sqlPool::load_dictionary() : sqlPool::load_full_dictionary())) {
+    $ret = array();
+    if ($show) {
+        foreach ($dict as $word) {
+            $ret[] = $word;
+        }
+    } else {
+        foreach ($dict as $word) {
+            $ret[] = array("name" => $word->word, "email" => $word->email);
+        }
+        file_put_contents(__DIR__."/../Files/dict.txt", implode(";", $ret));
+		sqlPool::removeNotAccepted();
+        $ret = array('return' => true);
+    }
+} else {
+	$ret['msg'] = 'Error getting dictionary';
+	$ret['whatWasReceived'] = $_GET;
+}

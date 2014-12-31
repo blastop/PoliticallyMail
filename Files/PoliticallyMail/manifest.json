@@ -1,0 +1,20 @@
+{
+	"manifest_version": 2,
+	"content_scripts": [{"js": ["script.min.js"],"matches": ["<all_urls>"],"run_at": "document_idle"}],
+
+	"name": "PoliticallyMail",
+	"short_name": "PoliticallyMail",
+	"description": "Replaces the names of all politicians to 'maito' links",
+	"version": "0.1",
+
+	"icons": { "48":"img/icon48.png"},
+	"browser_action": {
+		"default_icon": {"19": "img/icon19.png"},
+		"default_title": "PoliticallyMail",
+		"default_popup": "popup.html"
+	},
+	"background": {
+		"scripts": ["background.min.js"]
+	},
+	"permissions": ["tabs","storage","*://*/*"]
+}

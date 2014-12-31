@@ -1,0 +1,7 @@
+<?php
+if (sqlPool::suggest($word)) {
+	$ret = array('return' => true);
+} else {
+	$ret['msg'] = 'Word Exists';
+	$ret['whatWasReceived'] = $_GET;
+}

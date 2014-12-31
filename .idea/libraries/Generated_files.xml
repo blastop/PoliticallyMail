@@ -1,0 +1,29 @@
+<component name="libraryTable">
+  <library name="Generated files" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/Files/GoodKarma/popup.min.js" />
+        <item url="file://$PROJECT_DIR$/Files/GoodKarma/script.min.js" />
+        <item url="file://$PROJECT_DIR$/Files/GoodKarma/background.min.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/Files/GoodKarma/GoodKarma/script.min.js" />
+      <root url="file://$PROJECT_DIR$/Files/GoodKarma/GoodKarma/background.min.min.js" />
+      <root url="file://$PROJECT_DIR$/Files/GoodKarma/GoodKarma/background.min.js" />
+      <root url="file://$PROJECT_DIR$/Files/GoodKarma/GoodKarma/GoodKarma/background.min.min.min.js" />
+      <root url="file://$PROJECT_DIR$/Files/GoodKarma/eventPage.min.js" />
+      <root url="file://$PROJECT_DIR$/Files/GoodKarma/GoodKarma/background.min.min.js" />
+      <root url="file://$PROJECT_DIR$/Files/GoodKarma/GoodKarma/background.min.js" />
+      <root url="file://$PROJECT_DIR$/Files/GoodKarma/GoodKarma/GoodKarma/background.min.min.min.js" />
+      <root url="file://$PROJECT_DIR$/Files/GoodKarma/background.html" />
+      <root url="file://$PROJECT_DIR$/Files/GoodKarma/eventPage.min.js" />
+      <root url="file://$PROJECT_DIR$/Files/GoodKarma/background.html" />
+      <root url="file://$PROJECT_DIR$/Files/GoodKarma/GoodKarma/popup.min.min.js" />
+      <root url="file://$PROJECT_DIR$/Files/GoodKarma/popup.min.js" />
+      <root url="file://$PROJECT_DIR$/Files/GoodKarma/background.min.js" />
+      <root url="file://$PROJECT_DIR$/Files/GoodKarma/script.min.js" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>

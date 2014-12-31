@@ -1,0 +1,7 @@
+<?php
+if (sqlPool::update($wordID, $word, $status)) {
+	$ret = array('return' => true);
+} else {
+	$ret['msg'] = 'Error updating';
+	$ret['whatWasReceived'] = $_GET;
+}
