@@ -1,6 +1,6 @@
 body {
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
   width: 200px;
   text-align: center;
   min-height: 170px;
@@ -10,12 +10,10 @@ body {
   width: 100%;
   height: 100%;
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   opacity: 0.4;
-  background-image: url(img/karma.jpg);
-  background-position: center center;
-  background-repeat: no-repeat;
+  background: url(img/karma.jpg) no-repeat center center;
   background-size: 100% auto;
   overflow: hidden;
   z-index: 1;
@@ -37,7 +35,7 @@ body {
 
 #suggestButton {
   height: 30px;
-  margin: 0px;
+  margin: 0;
 }
 
 #active {
@@ -53,9 +51,16 @@ body {
   height: 33px;
   display: block;
   text-decoration: none;
-  margin: 10px auto 0px auto;
-  background-image: url(img/fb-share-button.png);
-  background-position: center center;
-  background-repeat: no-repeat;
+  margin: 10px auto 0 auto;
+  background: url(img/fb-share-button.png) no-repeat center center;
   background-size: 100% auto;
+}
+
+#close {
+  position: absolute;
+  top: -10px;
+  left: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
 }

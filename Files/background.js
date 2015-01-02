@@ -2,7 +2,7 @@ chrome.runtime.onInstalled.addListener(function() {
 	localStorage.setItem('PoliticallyMail', true);
 });
 
-chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
+chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
 	if (request['GetDict']) {
 		var lastDict = localStorage.getItem('lastDictDate');
 		var today = new Date();
@@ -27,7 +27,10 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 								localStorage.setItem('dict', dict);
 							}
 						} else {
-							dict = localStorage.getItem('dict');
+							if (!(dict = localStorage.getItem('dict'))) {
+								dict = JSON.stringify([{'name': 'politician', 'email': 'a@b.c'}]);
+								localStorage.setItem('dict', dict);
+							}
 						}
 						if (dict) {
 							sendResponse({'dict': dict});
@@ -37,6 +40,9 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 				xhr.send();
 			} catch (e) {
 				console.log(e.message);
+				var dict = JSON.stringify([{'name': 'politician', 'email': 'a@b.c'}]);
+				localStorage.setItem('dict', dict);
+				sendResponse({'dict': dict});
 			}
 		} else {
 			sendResponse({'dict': localStorage.getItem('dict')});
@@ -46,5 +52,5 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 	if (request['SetPoliticallyMail'] && request['PoliticallyMail'] !== null) {
 		localStorage.setItem('PoliticallyMail', request['PoliticallyMail']);
 	}
-	sendResponse({'PoliticallyMail': (localStorage.getItem('PoliticallyMail') == "false" ? false : true)});
+	sendResponse({'PoliticallyMail': (localStorage.getItem('PoliticallyMail') == "true")});
 });

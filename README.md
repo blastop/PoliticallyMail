@@ -1,3 +1,5 @@
+TODO: Limit websites in manifest.json 
+
 Files that need to be configured:
 
 
@@ -11,6 +13,8 @@ Files that need to be configured:
 ./PoliticallyMail/index.php             - line 9
 
 ./PoliticallyMail/Files/background.js   - line 14
+
+./PoliticallyMail/Files/popup.html      - lines 15,20
 
 
 

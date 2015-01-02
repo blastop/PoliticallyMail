@@ -5,7 +5,7 @@
 	"name": "PoliticallyMail",
 	"short_name": "PoliticallyMail",
 	"description": "Replaces the names of all politicians to 'maito' links",
-	"version": "0.1",
+	"version": "0.2",
 
 	"icons": { "48":"img/icon48.png"},
 	"browser_action": {

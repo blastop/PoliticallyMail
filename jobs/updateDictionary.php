@@ -4,4 +4,3 @@
 	require_once(__DIR__."/../core/config.php");
 	sqlPool::removeNotAccepted();
 	require_once(__DIR__."/../ajax/load_dictionary.ajx");
-var_dump('here4');

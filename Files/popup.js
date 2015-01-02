@@ -1,11 +1,11 @@
 (function() {
 	var that = this;
-    this.ThankYouTimeout = null;
+    //this.ThankYouTimeout = null;
     this.justOpened = true;
 
-	this.HandleKarma = function(Karma) {
-		chrome.browserAction.setIcon({path: "img/icon19"+(Karma ? '' : '_off')+".png"}, function() {});
-		document.getElementById('active').src = 'img/'+(Karma ? 'On' : 'Off')+'.png';
+	this.HandlePolitician = function(Politician) {
+		chrome.browserAction.setIcon({path: "img/icon19"+(Politician ? '' : '_off')+".png"}, function() {});
+		document.getElementById('active').src = 'img/'+(Politician ? 'On' : 'Off')+'.png';
 		if (!(that.justOpened)) {
 			chrome.tabs.getSelected(null, function(tab) {
 				chrome.tabs.reload(tab.id);
@@ -29,7 +29,13 @@
         } catch (e) {
             console.log(e.message);
         }
-    };*/
+    };
+
+    this.suggest_press = function(e) {
+	 if (e.which == "13") {
+	 that.suggest();
+	 }
+	 };*/
 
     this.activate = function() {
 		that.justOpened = false;
@@ -39,28 +45,23 @@
             : this.src.replace(/On/, 'Off')
         ;
 
-		chrome.extension.sendRequest(
+		chrome.extension.sendMessage(
 			{
 				'SetPoliticallyMail': true,
 				'PoliticallyMail': this.src.indexOf('On') > -1
 			},
 			function(response) {
-				that.HandleKarma(response['PoliticallyMail']);
+				that.HandlePolitician(response['PoliticallyMail']);
 			}
 		);
     };
 
-	/*this.suggest_press = function(e) {
-		if (e.which == "13") {
-			that.suggest();
-		}
-	};*/
-
     this.run = function() {
-		chrome.extension.sendRequest(
+	    document.getElementById('close').onclick = function() {window.close()};
+		chrome.extension.sendMessage(
 			{'GetPoliticallyMail': true},
 			function(response) {
-				that.HandleKarma(response['PoliticallyMail']);
+				that.HandlePolitician(response['PoliticallyMail']);
 
 				/*document.getElementById('suggest').addEventListener('keypress', that.suggest_press, false);
 				document.getElementById('suggestButton').addEventListener('click', that.suggest, false);*/
