@@ -1,11 +1,27 @@
 {
 	"manifest_version": 2,
-	"content_scripts": [{"js": ["script.min.js"],"matches": ["<all_urls>"],"run_at": "document_idle"}],
+	"content_scripts": [{
+	  "js": ["script.min.js"],
+	  "matches": [
+		"*://*.google.*",
+		"*://*.calcalist.co.il",
+		"*://*.themarker.co.il",
+		"*://*.globes.co.il",
+		"*://*.ynet.co.il",
+		"*://*.nana.co.il",
+		"*://*.nana10.co.il",
+		"*://*.nrg.co.il",
+		"*://*.israelhayom.co.il",
+		"*://*.mako.co.il",
+		"*://*.walla.co.il"
+	  ],
+	  "run_at": "document_idle"
+	}],
 
 	"name": "PoliticallyMail",
 	"short_name": "PoliticallyMail",
 	"description": "Replaces the names of all politicians to 'maito' links",
-	"version": "0.2",
+	"version": "0.3",
 
 	"icons": { "48":"img/icon48.png"},
 	"browser_action": {

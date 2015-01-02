@@ -1,5 +1,3 @@
-TODO: Limit websites in manifest.json 
-
 Files that need to be configured:
 
 
