@@ -3,17 +3,18 @@
 	"content_scripts": [{
 	  "js": ["script.min.js"],
 	  "matches": [
-		"*://*.google.*",
-		"*://*.calcalist.co.il",
-		"*://*.themarker.co.il",
-		"*://*.globes.co.il",
-		"*://*.ynet.co.il",
-		"*://*.nana.co.il",
-		"*://*.nana10.co.il",
-		"*://*.nrg.co.il",
-		"*://*.israelhayom.co.il",
-		"*://*.mako.co.il",
-		"*://*.walla.co.il"
+		"*://*.calcalist.co.il/*",
+		"*://*.themarker.co.il/*",
+		"*://*.globes.co.il/*",
+		"*://*.ynet.co.il/*",
+		"*://*.nana.co.il/*",
+		"*://*.nana10.co.il/*",
+		"*://*.nrg.co.il/*",
+		"*://*.israelhayom.co.il/*",
+		"*://*.mako.co.il/*",
+		"*://*.walla.co.il/*",
+		"*://*.google.co.il/*",
+		"*://*.google.com/*"
 	  ],
 	  "run_at": "document_idle"
 	}],
